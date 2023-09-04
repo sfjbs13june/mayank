@@ -1,4 +1,4 @@
-package com.mayank.app.firstwebmicroservice;
+package com.mayank.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
