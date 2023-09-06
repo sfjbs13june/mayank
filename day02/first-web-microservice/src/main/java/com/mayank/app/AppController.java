@@ -2,7 +2,8 @@ package com.mayank.app;
 
 import org.springframework.web.bind.annotation.*;
 
-@RestController/*("/api")*/
+@RestController
+@RequestMapping("/api")
 public class AppController {
 
     @GetMapping("/get")
