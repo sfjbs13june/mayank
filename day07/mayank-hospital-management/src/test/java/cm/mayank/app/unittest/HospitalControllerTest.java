@@ -26,4 +26,28 @@ public class HospitalControllerTest {
         Hospital result=hospitalController.createHospital(hospital);
         assertEquals(hospital.getId(),result.getId());
     }
+
+    @Test
+    public void test_getPatient(){
+        Hospital hospital=new Hospital("p1","x1","MH");
+        hospitalController.createHospital(hospital);
+        Hospital result=hospitalController.getHospital("x1");
+        assertEquals(hospital.getId(),result.getId());
+    }
+
+    @Test
+    public void test_updatePatient(){
+        Hospital hospital=new Hospital("p1","x1","MH");
+        hospitalController.createHospital(hospital);
+        Hospital result=hospitalController.updateHospital("x1","UPDATED");
+        assertEquals(hospital.getName(),result.getName());
+    }
+
+    @Test
+    public void test_deletePatient(){
+        Hospital hospital=new Hospital("p1","x1","MH");
+        hospitalController.createHospital(hospital);
+        hospitalController.deleteHospital("x1");
+        assertNull(hospitalController.getHospital("x1"));
+    }
 }
