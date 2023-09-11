@@ -18,8 +18,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -77,9 +76,27 @@ public class PatientContollerWebTest {
         ResultActions resultActions_create=mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
         resultActions_create.andExpect(status().isOk());
+        ResultActions resultActions=mockMvc.perform(put(update_url).param("id","X")
+                .param("hospital","UPD").accept(MediaType.APPLICATION_JSON));
+        resultActions.andExpect(status().isOk());
+        String result_string=resultActions.andReturn().getResponse().getContentAsString();
+        assertNotNull(result_string);
+        Gson g = new Gson();
+        Patient result = g.fromJson(result_string, Patient.class);
+        assertEquals("UPD",result.getHospital());
 
     }
 
+    @Test
+    public void test_deletePatient() throws Exception {
+        Patient patient=new Patient("P","X","M","A");
+        ResultActions resultActions_create=mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
+        resultActions_create.andExpect(status().isOk());
+        ResultActions resultActions=mockMvc.perform(delete(delete_url+"/X").param("id","X")
+                        .accept(MediaType.APPLICATION_JSON));
+        resultActions.andExpect(status().isOk());
+    }
     private String asJsonString(final Object obj) {
         try {
             final ObjectMapper mapper = new ObjectMapper();

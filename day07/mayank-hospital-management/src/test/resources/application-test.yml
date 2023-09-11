@@ -6,4 +6,4 @@ patient:
   update:
     url: /update/patient
   delete:
-    url: /delete/patient/{name}
+    url: /delete/patient

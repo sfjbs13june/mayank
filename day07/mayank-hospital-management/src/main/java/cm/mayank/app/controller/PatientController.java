@@ -28,7 +28,7 @@ public class PatientController {
         return patientMap.get(id);
     }
 
-    @DeleteMapping(value = {"/delete/patient/{name}"})
+    @DeleteMapping(value = {"/delete/patient/{id}"})
     public Patient deletePatient(@RequestParam("id") String id){
         return patientMap.remove(id);
     }
