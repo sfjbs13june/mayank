@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -40,9 +41,9 @@ public class PatientContollerWebTest {
 
     @Test
     public void test_createPatient() throws Exception {
-        Patient patient1=new Patient("P","X","M","A");
+        Patient patient=new Patient("P","X","M","A");
         ResultActions resultActions=mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(patient1)).accept(MediaType.APPLICATION_JSON));
+                .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isOk());
         String result_string=resultActions.andReturn().getResponse().getContentAsString();
         assertNotNull(result_string);
@@ -52,6 +53,31 @@ public class PatientContollerWebTest {
         assertEquals("X",result.getId());
         assertEquals("M",result.getHospital());
         assertEquals("A",result.getDisease());
+    }
+
+    @Test
+    public void test_getPatient() throws Exception {
+        Patient patient=new Patient("P","X","M","A");
+        ResultActions resultActions_create=mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
+        resultActions_create.andExpect(status().isOk());
+        ResultActions resultActions=mockMvc.perform(get(read_url+"/X").param("id","X").accept(MediaType.APPLICATION_JSON));
+        resultActions.andExpect(status().isOk());
+        String result_string=resultActions.andReturn().getResponse().getContentAsString();
+        assertNotNull(result_string);
+        Gson g = new Gson();
+        Patient result = g.fromJson(result_string, Patient.class);
+        assertEquals("M",result.getHospital());
+
+    }
+
+    @Test
+    public void test_updatePatient() throws Exception {
+        Patient patient=new Patient("P","X","M","A");
+        ResultActions resultActions_create=mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
+        resultActions_create.andExpect(status().isOk());
+
     }
 
     private String asJsonString(final Object obj) {

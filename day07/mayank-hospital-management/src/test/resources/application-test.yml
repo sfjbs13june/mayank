@@ -1,9 +1,9 @@
 patient:
   create:
-    url: /create
+    url: /save/patient
   read:
-    url: /read
+    url: /get/patient/
   update:
-    url: /update
+    url: /update/patient
   delete:
-    url: /delete
+    url: /delete/patient/{name}
