@@ -54,7 +54,7 @@ public class HospitalContollerWebTest {
     }
 
     @Test
-    public void test_getPatient() throws Exception {
+    public void test_getHospital() throws Exception {
         Hospital hospital=new Hospital("P","X","M");
         ResultActions resultActions_create=mockMvc.perform(post("/save/hospital").contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(hospital)).accept(MediaType.APPLICATION_JSON));
@@ -70,7 +70,7 @@ public class HospitalContollerWebTest {
     }
 
     @Test
-    public void test_updatePatient() throws Exception {
+    public void test_updateHospital() throws Exception {
         Hospital hospital=new Hospital("P","X","M");
         ResultActions resultActions_create=mockMvc.perform(post("/save/hospital").contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(hospital)).accept(MediaType.APPLICATION_JSON));
@@ -87,7 +87,7 @@ public class HospitalContollerWebTest {
     }
 
     @Test
-    public void test_deletePatient() throws Exception {
+    public void test_deleteHospital() throws Exception {
         Hospital hospital=new Hospital("P","X","M");
         ResultActions resultActions_create=mockMvc.perform(post("/save/hospital").contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(hospital)).accept(MediaType.APPLICATION_JSON));

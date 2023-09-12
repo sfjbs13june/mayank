@@ -1,9 +1,7 @@
 package cm.mayank.app.unittest;
 
 import cm.mayank.app.controller.HospitalController;
-import cm.mayank.app.controller.PatientController;
 import cm.mayank.app.model.Hospital;
-import cm.mayank.app.model.Patient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,17 +16,15 @@ public class HospitalControllerTest {
     @InjectMocks
     HospitalController hospitalController;
 
-
-
     @Test
-    public void test_createPatient(){
+    public void test_createHospital(){
         Hospital hospital=new Hospital("p1","x1","MH");
         Hospital result=hospitalController.createHospital(hospital);
         assertEquals(hospital.getId(),result.getId());
     }
 
     @Test
-    public void test_getPatient(){
+    public void test_getHospital(){
         Hospital hospital=new Hospital("p1","x1","MH");
         hospitalController.createHospital(hospital);
         Hospital result=hospitalController.getHospital("x1");
@@ -36,7 +32,7 @@ public class HospitalControllerTest {
     }
 
     @Test
-    public void test_updatePatient(){
+    public void test_updateHospital(){
         Hospital hospital=new Hospital("p1","x1","MH");
         hospitalController.createHospital(hospital);
         Hospital result=hospitalController.updateHospital("x1","UPDATED");
@@ -44,7 +40,7 @@ public class HospitalControllerTest {
     }
 
     @Test
-    public void test_deletePatient(){
+    public void test_deleteHospital(){
         Hospital hospital=new Hospital("p1","x1","MH");
         hospitalController.createHospital(hospital);
         hospitalController.deleteHospital("x1");
