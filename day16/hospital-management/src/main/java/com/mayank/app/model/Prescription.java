@@ -7,18 +7,20 @@ package com.mayank.app.model;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.Id;
 
+//@Setter
+//@Getter
 //@Entity
-public class Appointment {
+public class Prescription {
 //    @Id
 //    @GeneratedValue
+//    @Column(name = "prescriptionId")
+//    private String prescriptionId;
 //    @Column(name = "appointmentId")
-//    String appointmentId;
+//    private String appointmentId;
+//    @Column(name = "description")
+//    private String description;
 //    @Column(name = "patientName")
-//    String patientName;
+//    private String patientName;
 //    @Column(name = "doctorName")
-//    String doctorName;
-//    @Column(name = "date")
-//    String date;
-//    @Column(name = "prescription")
-//    Prescription prescription;
+//    private String doctorName;
 }
