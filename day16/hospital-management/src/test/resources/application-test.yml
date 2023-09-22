@@ -1,0 +1,6 @@
+doctor:
+  create:
+    url: /save
+  read:
+    url: /doctorappointment
+
